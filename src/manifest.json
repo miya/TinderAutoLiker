@@ -20,7 +20,8 @@
       "js": ["content.js"]
     }
    ],
-  "permissions":
-    "tabs", "https://tinder.com/app/recs"
+  "permissions": [
+    "tabs",
+    "storage"
   ]
 }
