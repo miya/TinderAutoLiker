@@ -6,7 +6,7 @@ chrome.extension.onMessage.addListener(function (request) {
     let type = langDic[pageLang][request.type]
 
     if (request.active) {
-        timer = setInterval(function () {btnClick(type)}, 1000)
+        timer = setInterval(function () {btnClick(type)}, 100)
     }  else {
         clearInterval(timer)
     }
