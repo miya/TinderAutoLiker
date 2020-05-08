@@ -3,6 +3,7 @@
     height: auto;
 }
 
+
 #url {
     text-align: center;
     text-decoration: none;
@@ -13,6 +14,7 @@
 #button {
     text-align: center;
 }
+
 
 button {
     color: seashell;
@@ -25,9 +27,16 @@ button {
     border-radius: 4px;
 }
 
+
+button:focus {
+	outline:0;
+}
+
+
 #like-btn {
     background-color: #53c9aa;
 }
+
 
 #nope-btn {
     background-color: #e86666;
