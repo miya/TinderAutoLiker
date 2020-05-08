@@ -19,7 +19,9 @@ window.onload = function () {
             console.log("ライクボタンステータスが定義されていないので非アクティブにしました");
             break;
         case "active":
-            nopeBtn.disabled = true
+            likeBtn.textContent = "like!";
+            likeBtn.style.backgroundColor = "#409982";
+            nopeBtn.disabled = true;
             console.log("ライクボタンはアクティブです");
             break;
         case "inactive":
@@ -33,7 +35,9 @@ window.onload = function () {
             console.log("ノープボタンステータスが定義されていないので非アクティブにしました")
             break;
         case "active":
-            likeBtn.disabled = true
+            nopeBtn.textContent = "nope!";
+            nopeBtn.style.backgroundColor = "#b05151";
+            likeBtn.disabled = true;
             console.log("ノープボタンはアクィブです");
             break;
         case "inactive":
@@ -42,14 +46,20 @@ window.onload = function () {
 
 }
 
+
+// ボタンが押された時の処理
 const likeBtn = document.getElementById("like-btn");
 likeBtn.onclick = function () {
     if (localStorage.likeBtnStatus === "inactive") {
+        likeBtn.textContent = "like!"
+        likeBtn.style.backgroundColor = "#409982"
         nopeBtn.disabled = true;
         localStorage.likeBtnStatus = "active";
         sendToContent("like", true);
         console.log("ライクボタンがアクティブになりました！");
     } else {
+        likeBtn.textContent = "like"
+        likeBtn.style.backgroundColor = "#53c9aa"
         nopeBtn.disabled = false;
         localStorage.likeBtnStatus = "inactive";
         sendToContent("like", false);
@@ -60,11 +70,15 @@ likeBtn.onclick = function () {
 const nopeBtn = document.getElementById("nope-btn");
 nopeBtn.onclick = function () {
     if (localStorage.nopeBtnStatus==="inactive") {
+        nopeBtn.textContent = "nope!"
+        nopeBtn.style.backgroundColor = "#b05151"
         likeBtn.disabled = true;
         localStorage.nopeBtnStatus = "active";
         sendToContent("nope", true);
         console.log("ノープボタンがアクティブになりました！");
     } else {
+        nopeBtn.textContent = "nope"
+        nopeBtn.style.backgroundColor = "#e86666"
         likeBtn.disabled = false;
         localStorage.nopeBtnStatus = "inactive";
         sendToContent("nope", false);
