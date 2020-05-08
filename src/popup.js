@@ -3,10 +3,12 @@ window.onload = function () {
 
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
         const currentUrl = tabs[0].url;
-        if (currentUrl !== "https://tinder.com/app/recs") {
-            document.getElementById("like").hidden = true;
-            document.getElementById("nope").hidden = true;
+        if (currentUrl === "https://tinder.com/app/recs") {
+            document.getElementById("button").hidden = false;
+        } else {
+            document.getElementById("url").hidden = false;
         }
+
     });
 
     // localStorage.clear();
@@ -14,56 +16,57 @@ window.onload = function () {
     switch (localStorage.likeBtnStatus) {
         case undefined:
             localStorage.likeBtnStatus = "inactive";
+            console.log("ライクボタンステータスが定義されていないので非アクティブにしました");
             break;
         case "active":
-            likeBtn.checked = true;
-            nopeBtn.disabled = true;
+            console.log("ライクボタンはアクティブです");
             break;
-        default:
-            localStorage.likeBtnStatus = "inactive";
+        case "inactive":
+            console.log("ライクボタンは非アクティブです")
             break;
     }
 
     switch (localStorage.nopeBtnStatus) {
         case undefined:
-            localStorage.nopeBtnStatus = "inactive"
+            localStorage.nopeBtnStatus = "inactive";
+            console.log("ノープボタンステータスが定義されていないので非アクティブにしました")
             break;
         case "active":
-            likeBtn.disabled = true;
-            nopeBtn.checked = true;
+            console.log("ノープボタンはアクィブです");
             break;
-        default:
-            localStorage.nopeBtnStatus = "inactive";
-            break;
+        case "inactive":
+            console.log("ノープボタンは非アクティブです");
     }
+
 }
 
-
-// ボタンが押された時の処理
 const likeBtn = document.getElementById("like-btn");
-likeBtn.onchange = function () {
-    if (likeBtn.checked) {
+likeBtn.onclick = function () {
+    if (localStorage.likeBtnStatus === "inactive") {
         nopeBtn.disabled = true;
         localStorage.likeBtnStatus = "active";
-        sendToContent("like", true)
+        sendToContent("like", true);
+        console.log("ライクボタンがアクティブになりました！");
     } else {
         nopeBtn.disabled = false;
         localStorage.likeBtnStatus = "inactive";
         sendToContent("like", false);
+        console.log("ライクボタンがが非アクティブになりました！");
     }
 }
 
-
 const nopeBtn = document.getElementById("nope-btn");
-nopeBtn.onchange = function () {
-    if (nopeBtn.checked) {
+nopeBtn.onclick = function () {
+    if (localStorage.nopeBtnStatus==="inactive") {
         likeBtn.disabled = true;
         localStorage.nopeBtnStatus = "active";
         sendToContent("nope", true);
+        console.log("ノープボタンがアクティブになりました！");
     } else {
         likeBtn.disabled = false;
         localStorage.nopeBtnStatus = "inactive";
         sendToContent("nope", false);
+        console.log("ノープボタンが非アクティブになりました！");
     }
 }
 

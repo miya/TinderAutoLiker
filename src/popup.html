@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="ja">
 <head>
     <meta charset="utf-8">
     <title>test</title>
+    <link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 <body>
-    <h1>TinderAutoLiker</h1>
-
-    <div id="nope">
-        <h3>nope</h3>
-        <input type="checkbox" id="nope-btn" >
+    <div>
+        <img class="logo" src="images/logo.png">
     </div>
 
-    <div id="like">
-        <h3>like</h3>
-        <input type="checkbox" id="like-btn">
+    <div id="button" hidden="">
+        <button type="button" id="nope-btn">nope!</button>
+        <button type="button" id="like-btn">like!</button>
+    </div>
+
+    <div id="url" hidden="">
+        <p>Only available on <a target="_blank" href="https://tinder.com/app/recs">Tinder</a></p>
     </div>
 
     <script type="text/javascript" src="popup.js"></script>
