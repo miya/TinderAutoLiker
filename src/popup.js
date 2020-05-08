@@ -19,6 +19,7 @@ window.onload = function () {
             console.log("ライクボタンステータスが定義されていないので非アクティブにしました");
             break;
         case "active":
+            nopeBtn.disabled = true
             console.log("ライクボタンはアクティブです");
             break;
         case "inactive":
@@ -32,6 +33,7 @@ window.onload = function () {
             console.log("ノープボタンステータスが定義されていないので非アクティブにしました")
             break;
         case "active":
+            likeBtn.disabled = true
             console.log("ノープボタンはアクィブです");
             break;
         case "inactive":
