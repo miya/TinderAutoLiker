@@ -20,6 +20,10 @@
       "js": ["content.js"]
     }
    ],
+  "background": {
+    "scripts": [ "background.js" ],
+    "persistent": false
+  },
   "permissions": [
     "tabs",
     "storage"
