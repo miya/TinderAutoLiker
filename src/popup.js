@@ -1,17 +1,9 @@
 // ポップアップが開かれた時の処理
 window.onload = function () {
 
-    chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
-        const currentUrl = tabs[0].url;
-        if (currentUrl === "https://tinder.com/app/recs") {
-            document.getElementById("button").hidden = false;
-        } else {
-            document.getElementById("url").hidden = false;
-        }
-
-    });
-
     // localStorage.clear();
+
+    check()
 
     switch (localStorage.likeBtnStatus) {
         case undefined:
@@ -86,13 +78,33 @@ nopeBtn.onclick = function () {
     }
 }
 
-// コンテントスクリプトに渡す
-function sendToContent(type, active) {
-    chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
-        const activeTab = tabs[0];
-        chrome.tabs.sendMessage(activeTab.id, {"type": type, "active": active});
-   });
+
+// 現在のタブがTinderかチェック
+function check() {
+    chrome.tabs.query({"active": true, "lastFocusedWindow": true}, function (tabs) {
+
+        // 現在のタブがTinderかチェック
+        if (tabs[0].url === "https://tinder.com/app/recs") {
+
+            // 対応言語かチェック
+            chrome.tabs.sendMessage(tabs[0].id, {"isSupported": true}, function (response) {
+                if(response) {
+                    document.getElementById("button").hidden = false;
+                } else {
+                    document.getElementById("button").hidden = true;
+                    document.getElementById("warning").hidden = false;
+                }
+            })
+        } else {
+            document.getElementById("url").hidden = false;
+            return false;
+        }
+    })
 }
 
-
+// コンテントスクリプトに渡す
+function sendToContent(type, active) {
+    chrome.tabs.query({active: true, currentWindow: true}, function (tabs){
+        chrome.tabs.sendMessage(tabs[0].id, {"type": type, "active": active}, function () {});});
+}
 
