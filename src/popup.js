@@ -1,5 +1,5 @@
 // ポップアップが開かれた時の処理
-window.onload = function () {
+window.onload = () => {
 
     isTinder()
 
@@ -39,7 +39,7 @@ window.onload = function () {
 
 // ボタンが押された時の処理
 const likeBtn = document.getElementById("like-btn");
-likeBtn.onclick = function () {
+likeBtn.onclick = () => {
     if (localStorage.likeBtnStatus === "inactive") {
         likeBtn.textContent = "like!"
         likeBtn.style.backgroundColor = "#409982"
@@ -58,7 +58,7 @@ likeBtn.onclick = function () {
 }
 
 const nopeBtn = document.getElementById("nope-btn");
-nopeBtn.onclick = function () {
+nopeBtn.onclick = () => {
     if (localStorage.nopeBtnStatus==="inactive") {
         nopeBtn.textContent = "nope!"
         nopeBtn.style.backgroundColor = "#b05151"
@@ -78,8 +78,8 @@ nopeBtn.onclick = function () {
 
 
 // 現在のタブがTinderかチェック
-function isTinder() {
-    chrome.tabs.query({"active": true, "lastFocusedWindow": true}, function (tabs) {
+const isTinder = () => {
+    chrome.tabs.query({"active": true, "lastFocusedWindow": true},  (tabs) => {
         if (tabs[0].url === "https://tinder.com/app/recs") {
             document.getElementById("button").hidden = false;
         } else {
@@ -89,8 +89,8 @@ function isTinder() {
 }
 
 // コンテントスクリプトに渡す
-function sendToContent(type, active) {
-    chrome.tabs.query({active: true, currentWindow: true}, function (tabs){
+const sendToContent = (type, active) => {
+    chrome.tabs.query({active: true, currentWindow: true},  (tabs) =>{
         chrome.tabs.sendMessage(tabs[0].id, {"type": type, "active": active});});
 }
 
