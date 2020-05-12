@@ -1,7 +1,10 @@
 // ポップアップが開かれた時の処理
+const tinderUrl = "https://tinder.com/app/recs"
+
 window.onload = () => {
 
-    isTinder()
+    isTinder();
+    isExistTinder();
 
     switch (localStorage.likeBtnStatus) {
         case undefined:
@@ -81,7 +84,7 @@ nopeBtn.onclick = () => {
 // 現在のタブがTinderかチェック
 const isTinder = () => {
     chrome.tabs.query({"active": true, "lastFocusedWindow": true},  (tabs) => {
-        if (tabs[0].url === "https://tinder.com/app/recs") {
+        if (tabs[0].url === tinderUrl) {
             document.getElementById("button").hidden = false;
         } else {
             document.getElementById("url").hidden = false;
@@ -90,8 +93,20 @@ const isTinder = () => {
 }
 
 
+// 開いているタブにTinderが存在しているか
+const isExistTinder = () => {
+    chrome.tabs.query({windowId: chrome.windows.WINDOW_ID_CURRENT},(tabs) => {
+        const tabList = tabs.map(tab => tab.url);
+        if (!tabList.includes(tinderUrl)) {
+            localStorage.likeBtnStatus = "inactive";
+            localStorage.nopeBtnStatus = "inactive";
+        }
+    });
+};
+
+
 // コンテントスクリプトに渡す
 const sendToContent = (type, active) => {
-    chrome.tabs.query({active: true, currentWindow: true},  (tabs) =>{
+    chrome.tabs.query({active: true, currentWindow: true},  (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, {"type": type, "active": active});});
 }
