@@ -1,17 +1,17 @@
 let timer;
 
-chrome.runtime.onMessage.addListener(function (request) {
+chrome.runtime.onMessage.addListener( (request) => {
     const pageLang = getPageLang();
     const type = langDic[pageLang][request.type];
 
     if (request.active) {
-        timer = setInterval(function () {btnClick(type)}, 100)
+        timer = setInterval(() => {btnClick(type)}, 100)
     } else {
         clearInterval(timer);
     }
 
     return true;
-})
+});
 
 
 // ボタンのクリック
