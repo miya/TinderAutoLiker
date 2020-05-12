@@ -2,6 +2,7 @@ let timer;
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     const pageLang = getPageLang();
+    console.log(pageLang);
 
     // 対応言語かチェック
     if (request.isSupported) {
@@ -23,16 +24,17 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 })
 
 
-// ボタンクリック
-function btnClick(type) {
+// ボタンのクリック
+const btnClick = (type) => {
     document.querySelector(`button[aria-label="${type}"]`).click();
-}
+};
 
 
-// ページの言語を取得
-function getPageLang() {
+//  lang属性の取得
+const getPageLang = () => {
     return document.getElementById("Tinder").lang;
-}
+};
+
 
 
 const langDic = {
