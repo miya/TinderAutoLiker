@@ -26,12 +26,13 @@ window.onload = () => {
             break;
         case "active":
             nopeBtn.textContent = "nope!";
-            nopeBtn.style.backgroundColor = "#b05151";
+            nopeBtn.style.backgroundColor = "#b05151"
             likeBtn.disabled = true;
             console.log("ノープボタンはアクィブです");
             break;
         case "inactive":
             console.log("ノープボタンは非アクティブです");
+            break;
     }
 }
 
