@@ -1,5 +1,5 @@
 // ポップアップが開かれた時の処理
-const tinderUrl = "https://tinder.com/app/recs"
+const tinderUrl = "https://tinder.com/app/recs";
 
 window.onload = () => {
 
@@ -9,79 +9,80 @@ window.onload = () => {
     switch (localStorage.likeBtnStatus) {
         case undefined:
             localStorage.likeBtnStatus = "inactive";
-            console.log("ライクボタンステータスが定義されていないので非アクティブにしました");
+            console.log("likeボタンステータスが定義されていないので非アクティブにしました");
             break;
         case "active":
             likeBtn.textContent = "like!";
             likeBtn.style.backgroundColor = "#409982";
             nopeBtn.disabled = true;
-            console.log("ライクボタンはアクティブです");
+            console.log("likeボタンはアクティブです");
             break;
         case "inactive":
-            console.log("ライクボタンは非アクティブです")
+            console.log("likeボタンは非アクティブです");
             break;
     }
 
     switch (localStorage.nopeBtnStatus) {
         case undefined:
             localStorage.nopeBtnStatus = "inactive";
-            console.log("ノープボタンステータスが定義されていないので非アクティブにしました")
+            console.log("nopeボタンステータスが定義されていないので非アクティブにしました");
             break;
         case "active":
             nopeBtn.textContent = "nope!";
-            nopeBtn.style.backgroundColor = "#b05151"
+            nopeBtn.style.backgroundColor = "#b05151";
             likeBtn.disabled = true;
-            console.log("ノープボタンはアクィブです");
+            console.log("nopeボタンはアクィブです");
             break;
         case "inactive":
-            console.log("ノープボタンは非アクティブです");
+            console.log("nopeボタンは非アクティブです");
             break;
     }
-}
+};
 
 
-// ボタンが押された時の処理
+// likeボタンが押された時の処理
 const likeBtn = document.getElementById("like-btn");
 likeBtn.onclick = () => {
     if (localStorage.likeBtnStatus === "inactive") {
-        likeBtn.textContent = "like!"
-        likeBtn.style.backgroundColor = "#409982"
+        likeBtn.textContent = "like!";
+        likeBtn.style.backgroundColor = "#409982";
         nopeBtn.disabled = true;
         localStorage.likeBtnStatus = "active";
         sendToContent("like", true);
-        console.log("ライクボタンがアクティブになりました！");
+        console.log("likeボタンがアクティブになりました！");
     } else {
-        likeBtn.textContent = "like"
-        likeBtn.style.backgroundColor = "#53c9aa"
+        likeBtn.textContent = "like";
+        likeBtn.style.backgroundColor = "#53c9aa";
         nopeBtn.disabled = false;
         localStorage.likeBtnStatus = "inactive";
         sendToContent("like", false);
-        console.log("ライクボタンがが非アクティブになりました！");
+        console.log("likeボタンがが非アクティブになりました！");
     }
-}
+};
 
 
+// nopeボタンが押された時の処理
 const nopeBtn = document.getElementById("nope-btn");
 nopeBtn.onclick = () => {
     if (localStorage.nopeBtnStatus==="inactive") {
-        nopeBtn.textContent = "nope!"
-        nopeBtn.style.backgroundColor = "#b05151"
+        nopeBtn.textContent = "nope!";
+        nopeBtn.style.backgroundColor = "#b05151";
         likeBtn.disabled = true;
         localStorage.nopeBtnStatus = "active";
         sendToContent("nope", true);
-        console.log("ノープボタンがアクティブになりました！");
+        console.log("nopeボタンがアクティブになりました！");
     } else {
-        nopeBtn.textContent = "nope"
-        nopeBtn.style.backgroundColor = "#e86666"
+        nopeBtn.textContent = "nope";
+        nopeBtn.style.backgroundColor = "#e86666";
         likeBtn.disabled = false;
         localStorage.nopeBtnStatus = "inactive";
         sendToContent("nope", false);
-        console.log("ノープボタンが非アクティブになりました！");
+        console.log("nopeボタンが非アクティブになりました！");
     }
-}
+};
 
 
-// 現在のタブがTinderかチェック
+// 現在のタブのURLがtinderUrlかチェック
 const isTinder = () => {
     chrome.tabs.query({"active": true, "lastFocusedWindow": true},  (tabs) => {
         if (tabs[0].url === tinderUrl) {
@@ -89,11 +90,11 @@ const isTinder = () => {
         } else {
             document.getElementById("url").hidden = false;
         }
-    })
-}
+    });
+};
 
 
-// 開いているタブにTinderが存在しているか
+// 開いているタブのURLにtinderUrlが存在しているかチェック
 const isExistTinder = () => {
     chrome.tabs.query({windowId: chrome.windows.WINDOW_ID_CURRENT},(tabs) => {
         const tabList = tabs.map(tab => tab.url);
@@ -105,8 +106,9 @@ const isExistTinder = () => {
 };
 
 
-// コンテントスクリプトに渡す
+// コンテントスクリプトにボタンの種類と状態を送る
 const sendToContent = (type, active) => {
     chrome.tabs.query({active: true, currentWindow: true},  (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, {"type": type, "active": active});});
-}
+        chrome.tabs.sendMessage(tabs[0].id, {"type": type, "active": active});
+    });
+};
