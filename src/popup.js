@@ -1,9 +1,7 @@
 // ポップアップが開かれた時の処理
 window.onload = function () {
 
-    // localStorage.clear();
-
-    check()
+    isTinder()
 
     switch (localStorage.likeBtnStatus) {
         case undefined:
@@ -80,24 +78,12 @@ nopeBtn.onclick = function () {
 
 
 // 現在のタブがTinderかチェック
-function check() {
+function isTinder() {
     chrome.tabs.query({"active": true, "lastFocusedWindow": true}, function (tabs) {
-
-        // 現在のタブがTinderかチェック
         if (tabs[0].url === "https://tinder.com/app/recs") {
-
-            // 対応言語かチェック
-            chrome.tabs.sendMessage(tabs[0].id, {"isSupported": true}, function (response) {
-                if(response) {
-                    document.getElementById("button").hidden = false;
-                } else {
-                    document.getElementById("button").hidden = true;
-                    document.getElementById("warning").hidden = false;
-                }
-            })
+            document.getElementById("button").hidden = false;
         } else {
             document.getElementById("url").hidden = false;
-            return false;
         }
     })
 }
@@ -105,6 +91,6 @@ function check() {
 // コンテントスクリプトに渡す
 function sendToContent(type, active) {
     chrome.tabs.query({active: true, currentWindow: true}, function (tabs){
-        chrome.tabs.sendMessage(tabs[0].id, {"type": type, "active": active}, function () {});});
+        chrome.tabs.sendMessage(tabs[0].id, {"type": type, "active": active});});
 }
 

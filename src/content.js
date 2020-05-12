@@ -1,26 +1,17 @@
 let timer;
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request) {
     const pageLang = getPageLang();
-    console.log(Object.keys(langDic));
+    const type = langDic[pageLang][request.type];
 
-    // 対応言語かチェック
-    if (request.isSupported) {
-        if (langDic[pageLang]) {
-            sendResponse(true);
-        } else {
-            sendResponse(false);
-        }
 
+    if (request.active) {
+        timer = setInterval(function () {btnClick(type)}, 100)
     } else {
-        const type = langDic[pageLang][request.type];
-        if (request.active) {
-            timer = setInterval(function () {btnClick(type)}, 100)
-        } else {
-            clearInterval(timer);
-        }
-        sendResponse({});
+        clearInterval(timer);
     }
+
+    return true;
 })
 
 
