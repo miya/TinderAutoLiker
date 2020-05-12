@@ -26,7 +26,7 @@ const getPageLang = () => {
 };
 
 
-
+// 言語別のLikeとNope
 const langDic = {
     "en": {
         "like": "Like",
