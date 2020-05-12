@@ -2,7 +2,7 @@ let timer;
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     const pageLang = getPageLang();
-    console.log(pageLang);
+    console.log(Object.keys(langDic));
 
     // 対応言語かチェック
     if (request.isSupported) {
@@ -38,9 +38,9 @@ const getPageLang = () => {
 
 
 const langDic = {
-    "ja": {
-        "like": "いいね！",
-        "nope": "いいえ"
+    "en": {
+        "like": "Like",
+        "nope": "Nope"
     },
 
     "af": {
@@ -64,22 +64,27 @@ const langDic = {
     },
 
     "bn": {
-        "like": "লাইক", // ダメです
+        "like": "লাইক",
         "nope": "না"
     },
 
     "bs": {
-        "like": "Označi da ti se sviđa", // ダメです
+        "like": "Označi da ti se sviđa",
         "nope": "Ne"
     },
 
     "ca": {
-        "like": "M'agrada", // ダメです
+        "like": "M'agrada",
         "nope": "No"
     },
 
+    "cs": {
+        "like": "Líbí se mi",
+        "nope": "Ne"
+    },
+
     "da": {
-        "like": "Synes godt om", // ダメです
+        "like": "Synes godt om",
         "nope": "Niks"
     },
 
@@ -98,7 +103,7 @@ const langDic = {
         "nope": "Nope"
     },
 
-    "en": {
+    "en-GB": {
         "like": "Like",
         "nope": "Nope"
     },
@@ -139,7 +144,7 @@ const langDic = {
     },
 
     "fr-CA": {
-        "like": "Like",  // ダメです
+        "like": "Like",
         "nope": "Non"
     },
 
@@ -173,13 +178,148 @@ const langDic = {
         "nope": "Nggak"
     },
 
-    "zh-Hans": {
-        "like": "赞",
-        "nope": "不"
+    "it": {
+        "like": "Mi piace",
+        "nope": "No"
+    },
+
+    "ja": {
+        "like": "いいね！",
+        "nope": "いいえ"
+    },
+
+    "ka": {
+        "like": "ლაიქი",
+        "nope": "არა"
+    },
+
+    "kk": {
+        "like": "Лайк",
+        "nope": "Жоқ"
     },
 
     "ko": {
         "like": "좋아요",
         "nope": "통과"
+    },
+
+    "lt": {
+        "like": "Patinka",
+        "nope": "Nea"
+    },
+
+    "lv": {
+        "like": "Patīk",
+        "nope": "Nē"
+    },
+
+    "mk": {
+        "like": "Лајк",
+        "nope": "Не"
+    },
+
+    "ms": {
+        "like": "Suka",
+        "nope": "Tidak"
+    },
+
+    "nb": {
+        "like": "Liker",
+        "nope": "Niks"
+    },
+
+    "nl": {
+        "like": "Leuk",
+        "nope": "Nee bedankt"
+    },
+
+    "pl": {
+        "like": "Polub",
+        "nope": "Żegnam"
+    },
+
+    "pt": {
+        "like": "Curti",
+        "nope": "Não"
+    },
+
+    "pt-PT": {
+        "like": "Gosto",
+        "nope": "Não"
+    },
+
+    "ro": {
+        "like": "Like",
+        "nope": "Nu"
+    },
+
+    "ru": {
+        "like": "Лайк",
+        "nope": "Нет"
+    },
+
+    "sk": {
+        "like": "Lajkovať",
+        "nope": "Nie"
+    },
+
+    "sl": {
+        "like": "Všečkaj",
+        "nope": "Ne"
+    },
+
+    "sr": {
+        "like": "Sviđa mi se",
+        "nope": "Ne"
+    },
+
+    "sv": {
+        "like": "Gilla",
+        "nope": "Nej"
+    },
+
+    "ta": {
+        "like": "விருப்பம்",
+        "nope": "இல்லை"
+    },
+
+    "te": {
+        "like": "లైక్",
+        "nope": "వద్దు"
+    },
+
+    "th": {
+        "like": "ถูกใจ",
+        "nope": "ไม่ดีกว่า"
+    },
+
+    "tl": {
+        "like": "Like",
+        "nope": "Hindi"
+    },
+
+    "tr": {
+        "like": "Beğen",
+        "nope": "Hayır"
+    },
+
+    "uk": {
+        "like": "Вподобати",
+        "nope": "Ні"
+    },
+
+    "vi": {
+        "like": "Thích",
+        "nope": "Không"
+    },
+
+    "zh-Hans": {
+        "like": "赞",
+        "nope": "不"
+    },
+
+    "zh-Hant": {
+        "like": "喜歡讃",
+        "nope": "不"
     },
 };
