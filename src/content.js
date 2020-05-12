@@ -4,7 +4,6 @@ chrome.runtime.onMessage.addListener(function (request) {
     const pageLang = getPageLang();
     const type = langDic[pageLang][request.type];
 
-
     if (request.active) {
         timer = setInterval(function () {btnClick(type)}, 100)
     } else {
