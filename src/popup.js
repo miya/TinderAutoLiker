@@ -33,7 +33,6 @@ window.onload = () => {
         case "inactive":
             console.log("ノープボタンは非アクティブです");
     }
-
 }
 
 
@@ -56,6 +55,7 @@ likeBtn.onclick = () => {
         console.log("ライクボタンがが非アクティブになりました！");
     }
 }
+
 
 const nopeBtn = document.getElementById("nope-btn");
 nopeBtn.onclick = () => {
@@ -88,9 +88,9 @@ const isTinder = () => {
     })
 }
 
+
 // コンテントスクリプトに渡す
 const sendToContent = (type, active) => {
     chrome.tabs.query({active: true, currentWindow: true},  (tabs) =>{
         chrome.tabs.sendMessage(tabs[0].id, {"type": type, "active": active});});
 }
-
