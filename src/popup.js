@@ -4,7 +4,6 @@ const tinderUrl = "https://tinder.com/app/recs";
 window.onload = () => {
 
     isTinder();
-    isExistTinder();
 
     switch (localStorage.likeBtnStatus) {
         case undefined:
@@ -89,18 +88,6 @@ const isTinder = () => {
             document.getElementById("button").hidden = false;
         } else {
             document.getElementById("url").hidden = false;
-        }
-    });
-};
-
-
-// 開いているタブのURLにtinderUrlが存在しているかチェック
-const isExistTinder = () => {
-    chrome.tabs.query({windowId: chrome.windows.WINDOW_ID_CURRENT},(tabs) => {
-        const tabList = tabs.map(tab => tab.url);
-        if (!tabList.includes(tinderUrl)) {
-            localStorage.likeBtnStatus = "inactive";
-            localStorage.nopeBtnStatus = "inactive";
         }
     });
 };
