@@ -16,7 +16,10 @@ chrome.runtime.onMessage.addListener( (request) => {
 
 // ボタンのクリック
 const btnClick = (type) => {
-    document.querySelector(`button[aria-label="${type}"]`).click();
+    const btn = document.querySelector(`button[aria-label="${type}"]`);
+    if (btn) {
+        btn.click()
+    }
 };
 
 
