@@ -17,7 +17,7 @@ Browser
 
 
 ## Install
-* [Release](https://github.com/miya/TinderAutoLiker/releases/, "github release")から最新版のzipをダウンロード、解凍
+* [Release](https://github.com/miya/TinderAutoLiker/releases/ "github release")から最新版のzipをダウンロード、解凍
 * Chrome右上のプルダウンをクリック
 * `その他のツール` から `拡張機能`に移動
 * デベロッパーモードをオン
